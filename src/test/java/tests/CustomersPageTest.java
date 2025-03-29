@@ -1,32 +1,24 @@
 package tests;
 
 import helpers.CustomerNameHelper;
-import org.testng.annotations.BeforeClass;
+import helpers.PropertyProvider;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CustomersPage;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class CustomersPageTest extends BasePageTest {
     private CustomersPage page;
-    private List<String> names;
 
-    @BeforeClass
+    @BeforeMethod
     public void setupPage() {
         page = new CustomersPage(driver);
-        names = new ArrayList<>();
     }
 
     @Test
-    public void sortCustomers() {
+    public void sortDeleteCustomers() {
         page.clickButtonCustomers();
-        names = page.clickSortCustomers();
-        page.deleteName(CustomerNameHelper.selectNameForDeletion(names));
+        page.clickSortCustomers(PropertyProvider.get("type.sort"));
+        page.deleteName(CustomerNameHelper.selectNameForDeletion(page.getListCustomers()));
     }
-
-//    @Test
-//    public void deleteCustomer() {
-//        page.deleteName(CustomerNameHelper.selectNameForDeletion(names));
-//    }
 }

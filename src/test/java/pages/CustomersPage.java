@@ -31,10 +31,15 @@ public class CustomersPage extends BasePage {
         click(buttonCustomers);
     }
 
-    public List<String> clickSortCustomers() {
+    public void clickSortCustomers(String typeSort) {
+        if (typeSort.equals("asc")) {
+            click(sortCustomers);
+        }
+        click(sortCustomers);
+    }
+
+    public List<String> getListCustomers() {
         List<String> listName = new ArrayList<>();
-        click(sortCustomers);
-        click(sortCustomers);
         for (WebElement element : customerNames) {
             listName.add(element.getText());
         }
@@ -45,7 +50,7 @@ public class CustomersPage extends BasePage {
         for (int i = 0; i < customerNames.size(); i++) {
             if (customerNames.get(i).getText().equals(targetName)) {
                 wait.waitForVisibility(deleteButton.get(i));
-                deleteButton.get(i).click();
+                click(deleteButton.get(i));
                 break;
             }
         }

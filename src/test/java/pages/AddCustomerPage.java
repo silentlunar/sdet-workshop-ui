@@ -46,5 +46,6 @@ public class AddCustomerPage extends BasePage {
 
     public void clickSubmitButton() {
         click(submitButton);
+        driver.switchTo().alert().accept();
     }
 }
