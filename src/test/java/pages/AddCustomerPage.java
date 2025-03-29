@@ -5,6 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * Класс - страница на которой можно добавить нового клиента.
+ * Расширяет класс BasePage.
+ */
+
 public class AddCustomerPage extends BasePage {
 
     public AddCustomerPage(WebDriver driver) {

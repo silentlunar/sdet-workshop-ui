@@ -7,7 +7,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.AddCustomerPage;
 
-
+/**
+ * Тест для создания нового покупателя.
+ */
 public class AddCustomerTest extends BasePageTest {
     private AddCustomerPage page;
 
@@ -17,7 +19,7 @@ public class AddCustomerTest extends BasePageTest {
     }
 
     @Test
-    @Step("Добавление нового клиента")
+    @Step("Добавление нового покупателя")
     public void addNewCustomer() {
         page.clickAddCustomer();
         String postCode = DataGenerator.generatePostCode();

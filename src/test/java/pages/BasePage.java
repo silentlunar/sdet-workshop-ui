@@ -4,6 +4,9 @@ import helpers.Wait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+/**
+ * Базовая страница для создания дополнительных страниц.
+ */
 public abstract class BasePage {
     protected WebDriver driver;
     protected final Wait wait;

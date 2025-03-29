@@ -8,6 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс - страница со списком покупателем, с функционалом для сортироваки и удаления покупателей.
+ * Расширяет класс BasePage.
+ */
 public class CustomersPage extends BasePage {
     public CustomersPage(WebDriver driver) {
         super(driver);

@@ -7,7 +7,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CustomersPage;
 
-
+/**
+ * Тест для сортировки и удаления покупателей.
+ */
 public class CustomersPageTest extends BasePageTest {
     private CustomersPage page;
 
@@ -17,7 +19,7 @@ public class CustomersPageTest extends BasePageTest {
     }
 
     @Test
-    @Step("Сортировка и удаление клиентов")
+    @Step("Сортировка и удаление покупателей")
     public void sortDeleteCustomers() {
         page.clickButtonCustomers();
         page.clickSortCustomers(PropertyProvider.get("type.sort"));
