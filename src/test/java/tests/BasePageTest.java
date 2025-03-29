@@ -3,10 +3,11 @@ package tests;
 import helpers.PropertyProvider;
 import helpers.Wait;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public abstract class BasePageTest {
     protected WebDriver driver;
@@ -23,7 +24,7 @@ public abstract class BasePageTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
         if (driver != null) {
             driver.quit();
         }

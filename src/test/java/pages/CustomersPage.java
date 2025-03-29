@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomersPage extends BasePage {
-
     public CustomersPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -34,8 +33,10 @@ public class CustomersPage extends BasePage {
     public void clickSortCustomers(String typeSort) {
         if (typeSort.equals("asc")) {
             click(sortCustomers);
+            click(sortCustomers);
+        } else if (typeSort.equals("desc")) {
+            click(sortCustomers);
         }
-        click(sortCustomers);
     }
 
     public List<String> getListCustomers() {
