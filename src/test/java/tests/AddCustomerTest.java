@@ -1,8 +1,10 @@
 package tests;
 
+import helpers.AlertHelper;
 import helpers.DataGenerator;
 import helpers.PropertyProvider;
 import io.qameta.allure.Step;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.AddCustomerPage;
@@ -23,10 +25,15 @@ public class AddCustomerTest extends BasePageTest {
     public void addNewCustomer() {
         page.clickAddCustomer();
         String postCode = DataGenerator.generatePostCode();
-        DataGenerator.generateFirstName(postCode);
-        page.fillFirstName(DataGenerator.generateFirstName(postCode));
-        page.fillLastName(PropertyProvider.get("name.last"));
-        page.fillPostCode(postCode);
-        page.clickSubmitButton();
+        String firstName = DataGenerator.generateFirstName(postCode);
+
+        page.fillFirstName(firstName)
+                .fillLastName(PropertyProvider.get("name.last"))
+                .fillPostCode(postCode)
+                .clickSubmitButton();
+
+        String alertText = AlertHelper.getTextAlert(driver);
+        Assert.assertTrue(alertText.contains("Customer added successfully with customer"), "Текст алерта не соответствует ожидаемому");
+        AlertHelper.closeAlert(driver);
     }
 }

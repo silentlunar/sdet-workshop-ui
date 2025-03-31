@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
  * Класс - страница на которой можно добавить нового клиента.
  * Расширяет класс BasePage.
  */
-
 public class AddCustomerPage extends BasePage {
 
     public AddCustomerPage(WebDriver driver) {
@@ -36,21 +35,23 @@ public class AddCustomerPage extends BasePage {
         click(buttonAddCustomer);
     }
 
-    public void fillFirstName(String firstName) {
+    public AddCustomerPage fillFirstName(String firstName) {
         wait.waitForVisibility(this.firstName);
         this.firstName.sendKeys(firstName);
+        return this;
     }
 
-    public void fillLastName(String lastName) {
+    public AddCustomerPage fillLastName(String lastName) {
         this.lastName.sendKeys(lastName);
+        return this;
     }
 
-    public void fillPostCode(String postCode) {
+    public AddCustomerPage fillPostCode(String postCode) {
         this.postCode.sendKeys(postCode);
+        return this;
     }
 
     public void clickSubmitButton() {
         click(submitButton);
-        driver.switchTo().alert().accept();
     }
 }

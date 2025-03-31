@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Класс - страница со списком покупателем, с функционалом для сортироваки и удаления покупателей.
@@ -44,11 +44,9 @@ public class CustomersPage extends BasePage {
     }
 
     public List<String> getListCustomers() {
-        List<String> listName = new ArrayList<>();
-        for (WebElement element : customerNames) {
-            listName.add(element.getText());
-        }
-        return listName;
+        return customerNames.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
     }
 
     public void deleteName(String targetName) {
