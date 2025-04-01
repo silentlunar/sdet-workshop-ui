@@ -2,15 +2,16 @@ package tests;
 
 import helpers.CustomerNameHelper;
 import helpers.PropertyProvider;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CustomersPage;
 
 import java.util.List;
-
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
 
 /**
  * Тест для сортировки и удаления покупателей.
@@ -24,20 +25,31 @@ public class CustomersPageTest extends BasePageTest {
     }
 
     @Test
+    @Description("Сортировка и удаление покупателей")
+    @Severity(SeverityLevel.NORMAL)
     @Step("Сортировка и удаление покупателей")
     public void sortDeleteCustomers() {
+        sortCustomersStep();
+        deleteCustomerStep();
+    }
+
+    @Step("Сортировка покупателей")
+    private void sortCustomersStep() {
         page.clickButtonCustomers();
         List<String> initialList = page.getListCustomers();
         page.clickSortCustomers(PropertyProvider.get("type.sort"));
         List<String> sortedList = page.getListCustomers();
 
         boolean isSorted = !initialList.equals(sortedList);
-        assertTrue(isSorted, "Список покупателей должен измениться после сортировки");
+        Assert.assertTrue(isSorted, "Список покупателей должен измениться после сортировки");
+    }
 
+    @Step("Удаление покупателя")
+    private void deleteCustomerStep() {
         String nameToDelete = CustomerNameHelper.selectNameForDeletion(page.getListCustomers());
         page.deleteName(nameToDelete);
 
         List<String> currentList = page.getListCustomers();
-        assertFalse(currentList.contains(nameToDelete), "Имя покупателя должно быть удалено из списка");
+        Assert.assertFalse(currentList.contains(nameToDelete), "Имя покупателя должно быть удалено из списка");
     }
 }

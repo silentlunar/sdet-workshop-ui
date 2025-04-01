@@ -9,12 +9,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 
-public class Wait {
+public class Waiters {
     private final WebDriverWait wait;
 
-    public Wait(WebDriver driver) {
+    public Waiters(WebDriver driver) {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
+
     /**
      * Метод для ожидание видимости элемента
      *
@@ -24,6 +25,7 @@ public class Wait {
     public WebElement waitForVisibility(WebElement webElement) {
         return wait.until(ExpectedConditions.visibilityOf(webElement));
     }
+
     /**
      * Метод для ожидание полной загрузки страницы.
      */

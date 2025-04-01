@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,10 +31,12 @@ public class CustomersPage extends BasePage {
     @FindBy(xpath = "//button[@ng-click=\"deleteCust(cust)\"]")
     private List<WebElement> deleteButton;
 
+    @Step("Выбор в меню пункта Customers")
     public void clickButtonCustomers() {
         click(buttonCustomers);
     }
 
+    @Step("Отсортированть покупателей ")
     public void clickSortCustomers(String typeSort) {
         if (typeSort.equals("asc")) {
             click(sortCustomers);
@@ -43,12 +46,14 @@ public class CustomersPage extends BasePage {
         }
     }
 
+    @Step("Получение списка покупателей")
     public List<String> getListCustomers() {
         return customerNames.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }
 
+    @Step("Удаление клиента с именем {targetName}")
     public void deleteName(String targetName) {
         for (int i = 0; i < customerNames.size(); i++) {
             if (customerNames.get(i).getText().equals(targetName)) {

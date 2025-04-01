@@ -1,7 +1,7 @@
 package tests;
 
 import helpers.PropertyProvider;
-import helpers.Wait;
+import helpers.Waiters;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public abstract class BasePageTest {
     protected WebDriver driver;
-    protected Wait wait;
+    protected Waiters wait;
 
     @BeforeClass
     public void init() {
@@ -19,7 +19,7 @@ public abstract class BasePageTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(PropertyProvider.get("web.url"));
-        this.wait = new Wait(driver);
+        this.wait = new Waiters(driver);
         wait.waitForPageLoad();
     }
 
