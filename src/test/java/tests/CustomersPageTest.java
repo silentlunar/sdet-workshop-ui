@@ -1,6 +1,7 @@
 package tests;
 
 import helpers.CustomerNameHelper;
+import helpers.CustomerSortHelper;
 import helpers.PropertyProvider;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -36,12 +37,10 @@ public class CustomersPageTest extends BasePageTest {
     @Step("Сортировка покупателей")
     private void sortCustomersStep() {
         page.clickButtonCustomers();
-        List<String> initialList = page.getListCustomers();
         page.clickSortCustomers(PropertyProvider.get("type.sort"));
         List<String> sortedList = page.getListCustomers();
-
-        boolean isSorted = !initialList.equals(sortedList);
-        Assert.assertTrue(isSorted, "Список покупателей должен измениться после сортировки");
+        boolean isSorted = CustomerSortHelper.isListSorted(sortedList, PropertyProvider.get("type.sort"));
+        Assert.assertTrue(isSorted, "Список покупателей должен быть отсортирован по типу " + PropertyProvider.get("type.sort"));
     }
 
     @Step("Удаление покупателя")
